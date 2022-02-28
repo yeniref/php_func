@@ -4,8 +4,8 @@ function dosya_indir($url,$dosya_adi,$klasor)
  
 $url_info = pathinfo($url);
 $uzanti = strtolower($url_info['extension']); 
-$file = ($dosya_adi) ? $dosya_adi.'.'.$uzanti : $url_info['basename'];
-$yol = $klasor."/".$file;
+dosya = ($dosya_adi) ? $dosya_adi.'.'.$uzanti : $url_info['basename'];
+$yol = $klasor."/".$dosya;
  
 $curl = curl_init($url);
 $fopen = fopen($yol,'w');
