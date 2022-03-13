@@ -90,3 +90,16 @@ function youtube_id($in, $to_num = false, $pad_up = false, $pass_key = null)
 
 //echo youtube_id('123456');
 //echo youtube_id('6ho',true);
+
+  function get_url_curl($url){
+    $curl = curl_init($url);
+    curl_setopt ($curl, CURLOPT_TIMEOUT, "50");
+    curl_setopt ($curl, CURLOPT_RETURNTRANSFER, TRUE);
+    curl_setopt ($curl, CURLOPT_HEADER, 1);
+    curl_setopt ($curl, CURLOPT_ENCODING, "UTF-8");
+    curl_setopt ($curl, CURLOPT_SSL_VERIFYPEER, FALSE);
+
+    $curlResult = curl_exec($curl);
+    curl_close($curl);
+    return str_replace(array("\n","\t","\r"),null,$curlResult);
+  }
