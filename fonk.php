@@ -103,3 +103,13 @@ function youtube_id($in, $to_num = false, $pad_up = false, $pass_key = null)
     curl_close($curl);
     return str_replace(array("\n","\t","\r"),null,$curlResult);
   }
+
+	function kisalt($kelime, $str = 10)
+	{
+		if (strlen($kelime) > $str)
+		{
+			if (function_exists("mb_substr")) $kelime = mb_substr($kelime, 0, $str, "UTF-8").'..';
+			else $kelime = substr($kelime, 0, $str).'..';
+		}
+		return $kelime;
+	}
