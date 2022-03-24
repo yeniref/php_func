@@ -113,3 +113,64 @@ function youtube_id($in, $to_num = false, $pad_up = false, $pass_key = null)
 		}
 		return $kelime;
 	}
+function konum_bul($veri = 'status'){ //Veriler country countryCode	region	regionName	city zip lat lon timezone isp org as query	
+	$ip = 'http://ip-api.com/json/'.$_SERVER["REMOTE_ADDR"].'';
+	$ch = curl_init($ip);                                                                     
+	curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");                                                                     
+	curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);                                                                      
+	curl_setopt($ch, CURLOPT_HTTPHEADER, array(                                                                          
+		'Content-Type: application/json'                                                                                
+	));
+	$sonuc = curl_exec($ch);
+
+    $sonuc = json_decode($sonuc);
+    return $sonuc->$veri;
+}
+date_default_timezone_set('Europe/Istanbul');
+function turkcetarih_formati($format, $datetime = 'now'){
+    $z = date("$format", strtotime($datetime));
+    $gun_dizi = array(
+        'Monday'    => 'Pazartesi',
+        'Tuesday'   => 'Salı',
+        'Wednesday' => 'Çarşamba',
+        'Thursday'  => 'Perşembe',
+        'Friday'    => 'Cuma',
+        'Saturday'  => 'Cumartesi',
+        'Sunday'    => 'Pazar',
+        'January'   => 'Ocak',
+        'February'  => 'Şubat',
+        'March'     => 'Mart',
+        'April'     => 'Nisan',
+        'May'       => 'Mayıs',
+        'June'      => 'Haziran',
+        'July'      => 'Temmuz',
+        'August'    => 'Ağustos',
+        'September' => 'Eylül',
+        'October'   => 'Ekim',
+        'November'  => 'Kasım',
+        'December'  => 'Aralık',
+        'Mon'       => 'Pts',
+        'Tue'       => 'Sal',
+        'Wed'       => 'Çar',
+        'Thu'       => 'Per',
+        'Fri'       => 'Cum',
+        'Sat'       => 'Cts',
+        'Sun'       => 'Paz',
+        'Jan'       => 'Oca',
+        'Feb'       => 'Şub',
+        'Mar'       => 'Mar',
+        'Apr'       => 'Nis',
+        'Jun'       => 'Haz',
+        'Jul'       => 'Tem',
+        'Aug'       => 'Ağu',
+        'Sep'       => 'Eyl',
+        'Oct'       => 'Eki',
+        'Nov'       => 'Kas',
+        'Dec'       => 'Ara',
+    );
+    foreach($gun_dizi as $en => $tr){
+        $z = str_replace($en, $tr, $z);
+    }
+    if(strpos($z, 'Mayıs') !== false && strpos($format, 'F') === false) $z = str_replace('Mayıs', 'May', $z);
+    return $z;
+}
