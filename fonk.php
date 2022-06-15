@@ -208,3 +208,20 @@ function suankisayfa(){
     $adres_bol = explode("/",$tarayici_adres);
     return $adres_bol[count($adres_bol)-1];
 }
+
+function http_to_https(){
+	if ( (isset($_SERVER['HTTP_X_FORWARDED_PORT'] ) && ( '443' == $_SERVER['HTTP_X_FORWARDED_PORT'] ))
+    || (isset($_SERVER['HTTP_CF_VISITOR']) && $_SERVER['HTTP_CF_VISITOR'] == '{"scheme":"https"}')) {
+    $_SERVER['HTTPS'] = 'on';
+}
+if (!(isset($_SERVER['HTTPS']) && ($_SERVER['HTTPS'] == 'on' || 
+   $_SERVER['HTTPS'] == 1) ||  
+   isset($_SERVER['HTTP_X_FORWARDED_PROTO']) &&   
+   $_SERVER['HTTP_X_FORWARDED_PROTO'] == 'https'))
+{
+   $redirect = 'https://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
+   header('HTTP/1.1 301 Moved Permanently');
+   header('Location: ' . $redirect);
+   exit();
+}
+}
