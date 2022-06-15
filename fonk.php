@@ -198,3 +198,13 @@ function gun_cevir($durum,$dil = 'en') {
     $durum = str_replace($eski, $yeni, $durum);     
     return $durum;
 }
+
+function yonlendir($yer,$sure = 0){
+    if ($yer=="") { $yer=suankisayfa();}
+    echo "<meta http-equiv='Refresh' content='".$sure.";url=".$yer."' />";
+}
+function suankisayfa(){
+    $tarayici_adres = $_SERVER["PHP_SELF"];
+    $adres_bol = explode("/",$tarayici_adres);
+    return $adres_bol[count($adres_bol)-1];
+}
