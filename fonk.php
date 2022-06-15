@@ -174,3 +174,27 @@ function turkcetarih_formati($format, $datetime = 'now'){
     if(strpos($z, 'Mayıs') !== false && strpos($format, 'F') === false) $z = str_replace('Mayıs', 'May', $z);
     return $z;
 }
+
+function gun_cevir($durum,$dil = 'en') {     
+    $eski   = array("0","1","2","3","4","5","6");    
+    if($dil=='en'){ 
+    $yeni   = array("Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday");  
+    }
+    if($dil=='tr'){ 
+        $yeni   = array("Pazartesi","Salı","Çarşamba","Perşembe","Cuma","Cumartesi","Pazar");  
+    }
+    if($dil=='de'){ 
+        $yeni   = array("Montag","Dienstag","Mittwoch","Donnerstag","Freitag","Samstag","Sonntag");  
+    }
+    if($dil=='it'){ 
+        $yeni   = array("Lunedì", "Martedì", "Mercoledì", "Giovedì", "Venerdì", "Sabato", "Domenica");
+    }
+    if($dil=='es'){ 
+        $yeni   =  array("Lunes","Martes","Miercoles","Jueves","Viernes","Sabado","Domingo");
+    }
+    if($dil=='fr'){ 
+        $yeni   =  array("Lundi","Mardi","Mercredi","Jeudi","Vendredi","Samedi","Dimanche");
+    }
+    $durum = str_replace($eski, $yeni, $durum);     
+    return $durum;
+}
