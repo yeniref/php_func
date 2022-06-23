@@ -225,3 +225,12 @@ if (!(isset($_SERVER['HTTPS']) && ($_SERVER['HTTPS'] == 'on' ||
    exit();
 }
 }
+
+function db_baglanti(){
+	try {
+    $db = new PDO("mysql:host=localhost;dbname=tas;charset=utf8", "root", "");
+}  
+    catch ( PDOException $e ){
+    print $e->getMessage();
+}
+}
