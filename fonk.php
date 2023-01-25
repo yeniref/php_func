@@ -175,6 +175,10 @@ function turkcetarih_formati($format, $datetime = 'now'){
     return $z;
 }
 
+//echo turkcetarih_formati('j F Y','2017-08-15');  //Çıktı: 15 Ağustos 2017
+ 
+//echo turkcetarih_formati('j F Y , l','2017-08-15');  //Çıktı: 15 Ağustos 2017 , Salı
+
 function gun_cevir($durum,$dil = 'en') {     
     $eski   = array("0","1","2","3","4","5","6");    
     if($dil=='en'){ 
